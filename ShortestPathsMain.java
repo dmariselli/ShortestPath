@@ -16,13 +16,15 @@ public class ShortestPathsMain {
 				break;
 			String v=kbd.next();
 			int w = kbd.nextInt();
-			Vertex vert = new Vertex();
 			Edge e1 = new Edge(v, w);
 			Edge e2 = new Edge(u, w);
 			g.addEdge(u,e1);
 			g.addEdge(v,e2);
-
-			
 		}
+
+		while (kbd.hasNext()){
+			g.dijkstra(kbd.next(),kbd.next());
+		}
+
 	}
 }
