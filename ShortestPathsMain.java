@@ -7,7 +7,6 @@ public class ShortestPathsMain {
 
 	public void go() {
 		Scanner kbd = new Scanner(System.in);
-
 		Graph g = new Graph(kbd.nextInt(), kbd.nextInt(), kbd.nextInt());
 
 		while (kbd.hasNext()){
