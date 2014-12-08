@@ -2,10 +2,15 @@ Computes shortest (least total weight) paths in a weighted, undirected graph. Th
 
 
 the input must be read from standard input where
-	the first line of input is three integers giving the width and height of the grid,
-	the rest of the input is divided into two sections separated by the word "queries" on a separate line, where
-	the first part contains information about the edges, one edge per line in the format "endpoint endpoint weight"; and
-	the second part contains the endpoints of shortest paths we wish to compute, one query per line in the format "source destination"; and
+
+the first line of input is three integers giving the width and height of the grid,
+
+the rest of the input is divided into two sections separated by the word "queries" on a separate line, where
+
+the first part contains information about the edges, one edge per line in the format "endpoint endpoint weight"; and
+
+the second part contains the endpoints of shortest paths we wish to compute, one query per line in the format "source destination"; and
+
 the output must be written to standard output in the format "weight path" where "weight" is the total weight of a shortest (least total weight) path from the source to the destination, and "path" is the list of vertices on that path given by name in order from source to destination in the same format as a Java list.
 
 Assuming:
