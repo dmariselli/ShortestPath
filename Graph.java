@@ -1,5 +1,5 @@
 import java.util.*;
-
+ 
 public class Graph{
 	Hashtable<String, LinkedList<Edge>> adj = new Hashtable<String, LinkedList<Edge>>();
 	Hashtable<String, Integer> adjDist = new Hashtable<String, Integer>();
@@ -35,7 +35,22 @@ public class Graph{
 	}
 
 	public void getWeight(String v){
-		System.out.println(adjDist.get(v));
+		System.out.print(adjDist.get(v)+" [");
+		paths.add(v);
+		getPath(v);
+		for (int i=paths.size()-1; i>0; i--){
+			System.out.print(paths.get(i)+", ");
+		}
+		System.out.println(paths.get(0)+ "]");
+		paths = new ArrayList<String>();
+	}
+
+	public void getPath(String v){
+		String p = adjPi.get(v);
+		if (p.equals("")!=true){
+			paths.add(p);
+			getPath(p);
+		}
 	}
 
 	public void addEdge(String u, Edge v){
@@ -64,15 +79,11 @@ public class Graph{
 				q.addItem(vertices.get(i),Integer.MAX_VALUE);
 			else{
 				q.addItem(vertices.get(i),0);
-				// System.out.println("Hello");
 			}
 		}
 
 		while (q.getSize()!=0){
 			String min = q.removeItem();
-			// System.out.println(min);
-			paths.add(min);
-			//need the path, not just the list of verts
 			for (int i=0; i<adj.get(min).size(); i++){
 				relax(q, min,adj.get(min).get(i).getVert(),adj.get(min).get(i).getWeight());
 			}
@@ -81,23 +92,19 @@ public class Graph{
 	}
 
 	public void relax(PriorityQueue<String, Integer> q, String u, String v, int w){
-		// System.out.println(adjDist.get(v));
 		if (adjDist.get(v)>(adjDist.get(u)+w)){
 			adjDist.put(v, adjDist.get(u)+w);
 			adjPi.put(v,u);
 			q.decreasePriority(v, adjDist.get(u)+w);
 		}
-		// System.out.println();
 	}
 
 	public void init(String u){
 		for (int i=0; i<vertices.size(); i++){
 			adjDist.put(vertices.get(i),Integer.MAX_VALUE);
-			// System.out.println(adjDist.get(vertices.get(i)));
 			addPi(vertices.get(i),"");
 		}
 		adjDist.put(u,0);
-		// System.out.println(adjDist.get(u));
 	}
 
 }
